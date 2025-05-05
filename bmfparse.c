@@ -518,7 +518,7 @@ static void parse_class_method_parameters(char *buf, uint32_t size, struct mof_m
       for (k=0; k<parameters[i].variables[j].qualifiers_count; ++k) {
         if (parameters[i].variables[j].qualifiers[k].type != MOF_QUALIFIER_SINT32)
           continue;
-        if (strcmp(parameters[i].variables[j].qualifiers[k].name, "ID") != 0)
+        if (strcasecmp(parameters[i].variables[j].qualifiers[k].name, "ID") != 0)
           continue;
         if (processed) error("parameter has more IDs");
         int32_t id = parameters[i].variables[j].qualifiers[k].value.sint32;
@@ -549,7 +549,7 @@ static void parse_class_method_parameters(char *buf, uint32_t size, struct mof_m
       for (k=0; k<variable.qualifiers_count; ++k) {
         if (variable.qualifiers[k].type != MOF_QUALIFIER_SINT32)
           continue;
-        if (strcmp(variable.qualifiers[k].name, "ID") != 0)
+        if (strcasecmp(variable.qualifiers[k].name, "ID") != 0)
           continue;
         id = variable.qualifiers[k].value.sint32;
         break;
@@ -570,7 +570,7 @@ static void parse_class_method_parameters(char *buf, uint32_t size, struct mof_m
         }
         for (k=0; k<variable.qualifiers_count; ++k) {
           if (variable.qualifiers[k].type == MOF_QUALIFIER_SINT32 &&
-              strcmp(variable.qualifiers[k].name, "ID") == 0)
+              strcasecmp(variable.qualifiers[k].name, "ID") == 0)
             continue;
           if (variable.qualifiers[k].type == MOF_QUALIFIER_BOOLEAN) {
             if (strcasecmp(variable.qualifiers[k].name, "in") == 0) {
